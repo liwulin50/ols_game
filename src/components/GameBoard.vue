@@ -29,6 +29,7 @@ import {
   collide, mergePiece, clearLines,
   calcScore, CLEAR_QUOTES, dropInterval,
 } from '../game/tetris.js'
+import { playBGM, stopBGM, pauseBGM, resumeBGM, playEliminate } from '../game/audio.js'
 
 const emit = defineEmits(['score', 'lines', 'level', 'quote', 'gameover'])
 
@@ -111,6 +112,7 @@ function lockPiece() {
   const [newBoard, cleared] = clearLines(board)
   board = newBoard
   if (cleared > 0) {
+    playEliminate(cleared) // 消除几行就播放几次音效
     lines.value += cleared
     const gained = calcScore(cleared, level.value)
     score.value += gained
@@ -203,21 +205,25 @@ function start() {
   emit('level', 1)
   spawn()
   restartTimer()
+  playBGM() // 游戏开始播放背景音乐
 }
 
 function pause() {
   running = false
   if (timer) clearInterval(timer)
+  pauseBGM()
 }
 
 function resume() {
   running = true
   restartTimer()
+  resumeBGM()
 }
 
 function gameOver() {
   running = false
   if (timer) clearInterval(timer)
+  stopBGM() // 游戏结束停止背景音乐
   emit('gameover', { score: score.value, lines: lines.value, level: level.value })
 }
 
