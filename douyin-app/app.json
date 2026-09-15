@@ -1,0 +1,9 @@
+{
+  "pages": ["pages/index/index"],
+  "window": {
+    "navigationBarTitleText": "武林叠方块",
+    "navigationBarBackgroundColor": "#1a0f0a",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#1a0f0a"
+  }
+}

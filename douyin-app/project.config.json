@@ -1,0 +1,11 @@
+{
+  "appid": "tt替换成你的小程序AppID",
+  "projectname": "wulin-tetris",
+  "setting": {
+    "es6": true,
+    "minified": true
+  },
+  "projectArchitecture": {
+    "local": []
+  }
+}
